@@ -5,14 +5,14 @@ import org.springframework.stereotype.Component;
 /**
  * Provides basic functionality for optometrists.
  */
-@Component("medicalMan")
+@Component("optometrist")
 public class Optometrist implements MedicalMan {
 
     private static final String PROFESSION = "Optometrist";
 
     @Override
     public void doProcedure() {
-        System.out.println("Doing procedure with eyes");
+        System.out.println("Doing procedure with eyes.");
     }
 
     @Override

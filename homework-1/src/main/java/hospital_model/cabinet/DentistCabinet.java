@@ -9,26 +9,17 @@ import org.springframework.stereotype.Component;
  * Implements dentist cabinet functionality.
  */
 @Component("medicalCabinet")
-public class DentistCabinet implements MedicalCabinet {
-
-    private MedicalMan medicalMan;
-
-    @Override
-    public void doProcedure() {
-        medicalMan.doProcedure();
-        System.out.println("Dr. " + medicalMan.getProfession() + " has made operation with patient teeth.");
-    }
-
-    @Override
-    public MedicalMan getMedicalMan() {
-        return medicalMan;
-    }
-
+public class DentistCabinet extends CommonMedicalCabinet {
 
     @Override
     @Autowired(required = false)
-    @Qualifier("Dentist")
+    @Qualifier("dentist")
     public void setMedicalMan(MedicalMan medic) {
-        this.medicalMan = medic;
+        super.setMedicalMan(medic);
+    }
+
+    @Override
+    protected String getProcedureDescription() {
+        return "procedure with patient teeth";
     }
 }

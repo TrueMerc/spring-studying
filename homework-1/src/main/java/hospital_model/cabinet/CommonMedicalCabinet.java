@@ -3,16 +3,16 @@ package hospital_model.cabinet;
 import hospital_model.employee.MedicalMan;
 
 /**
- * Provides functionality for common (non specialized) medical cabinet.
+ * Provides common implementation of 'MedicalCabinet' interface.
  */
 public class CommonMedicalCabinet implements MedicalCabinet {
 
-    private MedicalMan medicalMan;
+    protected MedicalMan medicalMan;
 
     @Override
     public void doProcedure() {
         medicalMan.doProcedure();
-        System.out.println("Dr. " + medicalMan.getProfession() + " has made preliminary examination of patient.");
+        System.out.println(medicalMan.getProfession() + " has made " + getProcedureDescription() + ".");
     }
 
     @Override
@@ -23,5 +23,9 @@ public class CommonMedicalCabinet implements MedicalCabinet {
     @Override
     public void setMedicalMan(MedicalMan medic) {
         this.medicalMan = medic;
+    }
+
+    protected String getProcedureDescription() {
+        return "nothing";
     }
 }

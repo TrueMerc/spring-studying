@@ -13,5 +13,4 @@ public class Therapist implements MedicalMan {
     public String getProfession() {
         return "Therapist";
     }
-
 }

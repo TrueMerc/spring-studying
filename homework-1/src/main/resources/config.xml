@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id = "medicalCabinet" class="hospital_model.cabinet.CommonMedicalCabinet">
+    <bean id = "medicalCabinet" class="hospital_model.cabinet.TherapistCabinet">
         <property name="medicalMan">
             <bean class="hospital_model.employee.Therapist"></bean>
         </property>

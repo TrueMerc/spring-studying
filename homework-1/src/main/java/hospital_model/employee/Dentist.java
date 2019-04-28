@@ -5,11 +5,12 @@ import org.springframework.stereotype.Component;
 /**
  * Provides basic functionality for dentists.
  */
-@Component("Dentist")
+@Component("dentist")
 public class Dentist implements MedicalMan {
+
     @Override
     public void doProcedure() {
-        System.out.println("Doing procedure with teeth");
+        System.out.println("Doing procedure with teeth.");
     }
 
     @Override
