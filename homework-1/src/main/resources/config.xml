@@ -5,7 +5,7 @@
 
     <bean id = "medicalCabinet" class="hospital_model.cabinet.CommonMedicalCabinet">
         <property name="medicalMan">
-            <bean class="hospital_model.employee.Dentist"></bean>
+            <bean class="hospital_model.employee.Therapist"></bean>
         </property>
     </bean>
 </beans>

@@ -1,4 +1,4 @@
-package hospital_model;
+package hospital_model.configuration;
 
 import hospital_model.cabinet.MedicalCabinet;
 import hospital_model.cabinet.OptometristCabinet;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan("hospital_model")
-public class ApplicationConfiguration {
+public class JavaConfigConfiguration {
 
 //    @Bean(name = "medicalMan")
 //    public MedicalMan medicalMan() {
@@ -22,7 +22,7 @@ public class ApplicationConfiguration {
 
 
     @Bean(name = "medicalCabinet")
-    public MedicalCabinet medicalCabinet(MedicalMan medicalMan) {
+    public MedicalCabinet getMedicalCabinet(MedicalMan medicalMan) {
         MedicalCabinet cabinet = new OptometristCabinet();
         cabinet.setMedicalMan(medicalMan);
         return cabinet;

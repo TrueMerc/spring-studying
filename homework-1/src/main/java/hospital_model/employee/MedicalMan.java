@@ -9,5 +9,5 @@ public interface MedicalMan {
     void doProcedure();
 
     String getProfession();
-    void setProfession();
+
 }

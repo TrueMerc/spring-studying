@@ -1,8 +1,11 @@
 package hospital_model.employee;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Provides basic functionality for dentists.
  */
+@Component("Dentist")
 public class Dentist implements MedicalMan {
     @Override
     public void doProcedure() {
@@ -12,10 +15,5 @@ public class Dentist implements MedicalMan {
     @Override
     public String getProfession() {
         return "Dentist";
-    }
-
-    @Override
-    public void setProfession() {
-
     }
 }

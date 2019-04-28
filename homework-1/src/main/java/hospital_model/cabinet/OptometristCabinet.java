@@ -13,7 +13,6 @@ public class OptometristCabinet implements MedicalCabinet {
     public void doProcedure() {
         medicalMan.doProcedure();
         System.out.println("Dr. " + medicalMan.getProfession() + " has made operation with patient eyes.");
-
     }
 
     @Override
