@@ -1,14 +1,12 @@
 package ru.ryabtsev;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
- * Hello world!
- *
+ * Converts list of objects to corresponding tree.
  */
-public class ListToTree
+public class ListToTreeApplication
 {
     public static void main( String[] args )
     {
@@ -25,19 +23,16 @@ public class ListToTree
             System.out.println(human);
         }
 
-        Collections.sort(humans, (h1, h2)->{
-            int result = h1.getParentId() - h2.getParentId();
-            return (0 != result) ? result : h1.getId() - h2.getId();
-        });
-
-        System.out.println("List ordered by ids");
-        for(Human human: humans) {
-            System.out.println(human);
-        }
-
         HumanTree tree = new HumanTree(humans);
-
         System.out.println("Tree has been created.");
 
+        System.out.println("Checking...");
+        for(int i = 0; i < 7; ++i) {
+            if(!tree.findNodeById(i)) {
+                System.out.println("Check failed at " + i + " value.");
+                return;
+            }
+        }
+        System.out.println("Check successful.");
     }
 }

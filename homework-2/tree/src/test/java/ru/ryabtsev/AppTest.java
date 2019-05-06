@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * Unit test for simple ListToTree.
+ * Unit test for simple ListToTreeApplication.
  */
 public class AppTest 
 {

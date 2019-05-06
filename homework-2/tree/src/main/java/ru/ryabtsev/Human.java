@@ -1,10 +1,8 @@
 package ru.ryabtsev;
 
-
 public class Human {
     private int id;
     private int parentId;
-
 
     public Human(int id, int parentId) {
         this.id = id;

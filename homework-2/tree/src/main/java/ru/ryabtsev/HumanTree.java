@@ -2,9 +2,36 @@ package ru.ryabtsev;
 
 import java.util.Collections;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class HumanTree {
+
+    private class HumanTreeNode {
+
+        private List<HumanTreeNode>  children = new LinkedList<>();
+        private int id;
+
+        HumanTreeNode(int id) {
+            this.id = id;
+        }
+
+        boolean addChild(Human human) {
+            if(human.getParentId() == this.id) {
+                children.add(new HumanTreeNode(human.getId()));
+                return true;
+            }
+            return false;
+        }
+
+        List<HumanTreeNode> getChildren() {
+            return children;
+        }
+
+        public int getId() {
+            return id;
+        }
+    }
 
     private HumanTreeNode root;
 
@@ -31,27 +58,12 @@ public class HumanTree {
                 if(null == currentNode) {
                     break;
                 }
-//                List<HumanTreeNode> children = root.getChildren();
-//
-//                int j = 0;
-//                for(; j < children.size(); ++j) {
-//                    if(children.get(i).getId() == currentParentId) {
-//                        root = children.get(i);
-//                        break;
-//                    }
-//                }
-//
-//                if(j == children.size()) {
-//                    root = root.getParent();
-//                }
-//
-//                currentParentId = root.getId();
             }
         }
     }
 
-    public HumanTreeNode findNodeById(int id) {
-        return recursiveFind(root, id);
+    public boolean findNodeById(int id) {
+        return null != recursiveFind(root, id);
     }
 
     private HumanTreeNode recursiveFind(HumanTreeNode currentNode, int value) {
@@ -63,8 +75,6 @@ public class HumanTree {
             return currentNode;
         }
 
-//        return value < currentNode.value ?
-//                recursiveFind(currentNode.leftChild, value) : recursiveFind(currentNode.rightChild, value);
         List<HumanTreeNode> children = currentNode.getChildren();
         if(currentNode.getChildren().isEmpty()) {
             return null;
@@ -79,5 +89,4 @@ public class HumanTree {
 
         return null;
     }
-
 }
