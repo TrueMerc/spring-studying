@@ -18,4 +18,9 @@ public class Human {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Id = " + id + ", parentId = " + parentId;
+    }
 }
