@@ -3,6 +3,9 @@ package ru.ryabtsev.spring;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Implements database 'Course' entity.
+ */
 @Entity
 @Table(name="_students")
 public class Student {
@@ -25,7 +28,6 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private List<Course> courses;
-
 
     public int getId() {
         return id;
@@ -51,9 +53,7 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Student() {
-
-    }
+    public Student() {}
 
     public List<Course> getCourses() {
         return courses;
@@ -71,5 +71,4 @@ public class Student {
         }
         return result;
     }
-
 }

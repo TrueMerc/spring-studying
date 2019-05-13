@@ -3,6 +3,9 @@ package ru.ryabtsev.spring;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Implements database 'Course' entity.
+ */
 @Entity
 @Table(name = "_courses")
 public class Course {

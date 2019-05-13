@@ -25,15 +25,18 @@ public class EducationProcessApplication
             session = factory.getCurrentSession();
             session.beginTransaction();
             List<Student> students = session.createQuery("from Student").getResultList();
-            //List<Course> courses = session.createQuery("from Course").getResultList();
             for(Student student : students) {
                 System.out.println(student);
             }
             session.getTransaction().commit();
 
-
-
-
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+            List<Course> courses = session.createQuery("from Course").getResultList();
+            for(Course course : courses) {
+                System.out.println(course);
+            }
+            session.getTransaction().commit();
         }
         finally {
             factory.close();
