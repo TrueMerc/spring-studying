@@ -1,7 +1,5 @@
 package ru.ryabtsev.spring;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,7 +8,7 @@ import java.util.List;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -20,8 +18,12 @@ public class Course {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "course_id")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @ManyToMany
+    @JoinTable(
+            name = "_process",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
     private List<Student> students;
 
     public Course() {}

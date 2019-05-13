@@ -1,8 +1,5 @@
 package ru.ryabtsev.spring;
 
-
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,11 +15,15 @@ public class Student {
     @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "second_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(mappedBy = "student_id")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @ManyToMany
+    @JoinTable(
+            name = "_process",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
     private List<Course> courses;
 
 
@@ -54,13 +55,21 @@ public class Student {
 
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
     @Override
     public String toString() {
-        String result = "Student [id = " + id + "] " + lastName + " " + firstName + "\n";
-//        result += "Courses: ";
-//        for(Course course: courses) {
-//            //result +=
-//        }
+        String result = "Student [id = " + id + "] " + lastName + " " + firstName + "\nCourses list:\n";
+        for(Course course : courses) {
+            result += course;
+        }
         return result;
     }
+
 }
