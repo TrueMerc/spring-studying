@@ -3,6 +3,7 @@ package ru.ryabtsev.spring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.ryabtsev.spring.entities.Student;
 
 import javax.sql.DataSource;
 
@@ -17,8 +18,16 @@ public class JdbcTemplateStudentDAO implements StudentDAO {
 
     @Override
     public void insert(Student student) {
-        String sql = "INSERT INTO _students (first_name, last_name, total_mark) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, student.getFirstName(), student.getLastName(), student.getTotalMark());
+        if(student.getId() > 0) {
+            String sql = "UPDATE _students SET first_name, last_name, total_mark WHERE id = ?;";
+            jdbcTemplate.update(sql, student.getFirstName(), student.getLastName(), student.getTotalMark(),
+                    student.getId()
+            );
+        }
+        else {
+            String sql = "INSERT INTO _students (first_name, last_name, total_mark) VALUES (?, ?, ?);";
+            jdbcTemplate.update(sql, student.getFirstName(), student.getLastName(), student.getTotalMark());
+        }
     }
 
     @Override

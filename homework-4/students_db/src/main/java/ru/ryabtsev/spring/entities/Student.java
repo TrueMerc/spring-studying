@@ -1,43 +1,27 @@
-package ru.ryabtsev.spring;
+package ru.ryabtsev.spring.entities;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "_students")
+@Data
 public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "total_mark")
     private int totalMark;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public int getTotalMark() {
-        return totalMark;
-    }
-
-    public void setTotalMark(int totalMark) {
-        this.totalMark = totalMark;
-    }
 
     public Student() {
         this.id = 0;
