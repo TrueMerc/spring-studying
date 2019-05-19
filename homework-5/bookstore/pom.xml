@@ -7,7 +7,7 @@
   <groupId>ru.ryabtsev.spring</groupId>
   <artifactId>bookstore</artifactId>
   <version>1.0</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <name>Bookstore Webapp</name>
   <url>https://github.com/TrueMerc/spring-studying</url>
@@ -22,6 +22,13 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-jdk14</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+
     <!-- JUnit-->
     <dependency>
       <groupId>junit</groupId>
@@ -169,5 +176,10 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <resources>
+      <resource>
+        <directory>src/main/webapp</directory>
+      </resource>
+    </resources>
   </build>
 </project>

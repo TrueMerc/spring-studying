@@ -39,7 +39,7 @@ public class BooksController {
         Book book = new Book();
         book.setTitle(DEFAULT_BOOK_TITLE);
         model.addAttribute("book", book);
-        return "add-student-form";
+        return "add-book-form";
     }
 
     @RequestMapping(path="/add", method=RequestMethod.POST)
