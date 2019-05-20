@@ -16,12 +16,12 @@
 <body>
 	<div class="fluid-container">
 		<nav>
-			<div th:replace="~{menu :: mymenu(StudentsList)}">
+			<div th:replace="~{menu :: mymenu(BookList)}">
 			</div>
 		</nav>
 	</div>
 	<div class="container">
-		<h1>Students List</h1>
+		<h1>Book List</h1>
 		<table class="table">
 			<thead>
 				<tr class="thead-dark">
@@ -32,21 +32,17 @@
 					<td>Actions</td>
 				</tr>
 			</thead>
-
 			<tr th:each="book : ${booksList}">
 				<td th:text="${book.id}"/>
 				<td th:text="${book.title}"/>
 				<td th:text="${book.description}"/>
-				<td th:text="${book.publicationYear}"
+				<td th:text="${book.publicationYear}"/>
 				<td>
 					<button class="btn btn-primary infoBtn" th:attr="entryIndex=${book.id}">Info</button>
 					<a class="btn btn-danger" th:href="@{'/books/remove/' + ${book.id}}" role="button">Remove</a>
 				</td>
 			</tr>
 		</table>
-		<!--<br>-->
-		<!--<a href="/">Back To Main Page</a>-->
-		<!--<br>-->
 	</div>
 </body>
 <footer>

@@ -7,7 +7,6 @@ import ru.ryabtsev.spring.repositories.BooksRepository;
 
 import java.util.List;
 
-
 /**
  * Implements service layer class for 'Book' objects manipulation.
  */
@@ -40,11 +39,18 @@ public class BooksService {
         return booksRepository.findById(id).get();
     }
 
-    public void add(Book s) {
-        booksRepository.save(s);
+    /**
+     * Adds new book into books list.
+     * @param book book which will be placed into books list.
+     */
+    public void add(Book book) {
+        booksRepository.save(book);
     }
 
-
+    /**
+     * Removes book with given id.
+     * @param id id of the book which should be removed.
+     */
     public void removeById(Long id) {
         booksRepository.deleteById(id);
     }
