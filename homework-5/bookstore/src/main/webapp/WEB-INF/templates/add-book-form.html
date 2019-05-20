@@ -16,11 +16,12 @@
     <body>
         <form th:action="@{/books/add}" th:object="${book}" method="post">
             Title: <input type="text" th:field="*{title}"/>
+            Description: <input type="text" th:field="*{description}"/>
+            Publication year: <input type="text" th:field="*{publicationYear}"/>
             <br>
             <div class="submit">
                 <button name="addBook" type="submit">Add</button>
             </div>
-
         </form>
     </body>
 </html>
