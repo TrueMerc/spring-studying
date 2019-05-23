@@ -26,7 +26,7 @@
 
         <tr class="myTableRow responsive-row" th:each="course : ${studentCourses}" th:attr="entryIndex=${course.id}">
             <td th:text="${course.id}"/>
-            <td th:text="${course.title}"/>
+            <td th:text="${course.name}"/>
             <td>
                 <button class="btn btn-primary removeBtn" th:attr="entryIndex=${course.id}">Remove</button>
             </td>
@@ -45,7 +45,7 @@
 
         <tr class="myTableRow responsive-row" th:each="course : ${studentMissingCourses}" th:attr="entryIndex=${course.id}">
             <td th:text="${course.id}"/>
-            <td th:text="${course.title}"/>
+            <td th:text="${course.name}"/>
             <td>
                 <button class="btn btn-primary removeBtn" th:attr="entryIndex=${course.id}">Remove</button>
             </td>
