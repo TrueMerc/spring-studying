@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ryabtsev.spring.entities.Course;
 import ru.ryabtsev.spring.entities.Student;
+import ru.ryabtsev.spring.repositories.StudentsRepository;
 
 import java.util.List;
 
