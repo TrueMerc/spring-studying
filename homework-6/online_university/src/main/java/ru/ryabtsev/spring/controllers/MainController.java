@@ -15,6 +15,9 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("/login")
+    public String showLoginPage() { return "plain-login"; }
+
 //    @Secured({"ROLE_ADMIN"})
 //    @RequestMapping("/administratorOnly")
 //    public String administratorOnly() {
