@@ -1,6 +1,7 @@
 package ru.ryabtsev.spring;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -13,7 +14,7 @@ public class ObjectQueueApplication
 
     public static void main( String[] args )
     {
-        Queue<Object> queue = new ArrayDeque<>();
+        Queue<Object> queue = new LinkedList<>();
 
         ObjectGenerator generator = new ObjectGenerator(GENERATOR_SEED);
 
@@ -35,12 +36,11 @@ public class ObjectQueueApplication
             nextElement = queue.poll();
             queue.add(new Marker<Object>(nextElement));
             ++counter;
-
         }
-        while(nextElement.hashCode() != firstElementHashCode);
+        while(nextElement == null || nextElement.hashCode() != firstElementHashCode);
 
         System.out.println("Elements proceeded: " + counter);
-        System.out.println("The first element is " + nextElement);
+        System.out.println("The first element is " + ((nextElement == null) ? "null" : nextElement));
     }
 
 

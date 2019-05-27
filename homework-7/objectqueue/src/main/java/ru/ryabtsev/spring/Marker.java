@@ -12,6 +12,6 @@ public class Marker<T> {
 
     @Override
     public String toString() {
-        return this.object.toString();
+        return this.object != null ? this.object.toString() : "null";
     }
 }

@@ -29,6 +29,6 @@ public class ObjectGenerator {
                 return random.nextFloat();
         }
 
-        return random.nextInt();
+        return null;
     }
 }
