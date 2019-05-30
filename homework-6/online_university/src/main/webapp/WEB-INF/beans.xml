@@ -40,15 +40,24 @@
     <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bookstore?useSSL=false"/>
-        <property name="user" value="user"/>
-        <property name="password" value="user"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/online_university?useSSL=false"/>
+        <property name="user" value="test_user"/>
+        <property name="password" value="#Test123"/>
         <property name="minPoolSize" value="5"/>
         <property name="maxPoolSize" value="20"/>
         <property name="maxIdleTime" value="30000"/>
     </bean>
 
     <jpa:repositories base-package="ru.ryabtsev.spring"/>
+
+
+    <bean id="authenticationProvider" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <constructor-arg name="strength" value="10" />
+        <!--<security:jdbc-user-service data-source-ref="myDataSource"-->
+                                    <!--users-by-username-query="SELECT login, password FROM `_users` WHERE login = ?"-->
+                                    <!--authorities-by-username-query="SELECT u.login, au.authority FROM `_authorities`-->
+                                    <!--WHERE u.login = au.login AND u.login = ?"/>-->
+    </bean>
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
