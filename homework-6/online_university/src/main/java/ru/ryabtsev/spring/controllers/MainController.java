@@ -1,6 +1,5 @@
 package ru.ryabtsev.spring.controllers;
 
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,9 +14,12 @@ public class MainController {
         return "index";
     }
 
-    @Secured({"ROLE_ADMIN"})
-    @RequestMapping("/administratorOnly")
-    public String administratorOnly() {
-        return "index";
-    }
+    @RequestMapping("/login")
+    public String showLoginPage() { return "modern-login"; }
+
+//    @Secured({"ROLE_ADMIN"})
+//    @RequestMapping("/administratorOnly")
+//    public String administratorOnly() {
+//        return "index";
+//    }
 }

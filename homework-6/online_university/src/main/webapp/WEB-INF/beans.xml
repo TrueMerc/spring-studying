@@ -1,21 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xmlns:util="http://www.springframework.org/schema/util"
-
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd
-        http://www.springframework.org/schema/data/jpa
-        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-        http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -29,15 +28,10 @@
     <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/"/>
         <property name="suffix" value=".html"/>
-        <property name="templateMode" value="HTML5"/>
+        <property name="templateMode" value="HTML"/>
     </bean>
     <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver" />
-        <property name="additionalDialects">
-            <set>
-                <bean class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect"/>
-            </set>
-        </property>
     </bean>
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine" />
@@ -46,9 +40,9 @@
     <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/education_process?useSSl=false"/>
-        <property name="user" value="test"/>
-        <property name="password" value="test"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/online_university?useSSL=false"/>
+        <property name="user" value="test_user"/>
+        <property name="password" value="#Test123"/>
         <property name="minPoolSize" value="5"/>
         <property name="maxPoolSize" value="20"/>
         <property name="maxIdleTime" value="30000"/>
@@ -56,8 +50,13 @@
 
     <jpa:repositories base-package="ru.ryabtsev.spring"/>
 
+
     <bean id="authenticationProvider" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
         <constructor-arg name="strength" value="10" />
+        <!--<security:jdbc-user-service data-source-ref="myDataSource"-->
+                                    <!--users-by-username-query="SELECT login, password FROM `_users` WHERE login = ?"-->
+                                    <!--authorities-by-username-query="SELECT u.login, au.authority FROM `_authorities`-->
+                                    <!--WHERE u.login = au.login AND u.login = ?"/>-->
     </bean>
 
     <bean id="entityManagerFactory"
@@ -86,4 +85,5 @@
 
     <mvc:resources location="/resources/" mapping="/resources/**" />
     <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**" />
+
 </beans>

@@ -18,20 +18,20 @@
     <div class="container">
         <h1>Welcome page</h1>
 
-        <div sec:authorize="isAuthenticated()">
-            Authenticated username:
-            <div sec:authentication="principal.username"></div>
-            Authenticated user roles:
-            <div sec:authentication="principal.authorities"></div>
-        </div>
+        <!--<div sec:authorize="isAuthenticated()">-->
+            <!--Authenticated username:-->
+            <!--<div sec:authentication="principal.username"></div>-->
+            <!--Authenticated user roles:-->
+            <!--<div sec:authentication="principal.authorities"></div>-->
+        <!--</div>-->
 
         <h2>Index:</h2>
         <br>
         <a href="/students/list">Show students list</a>
-        <div sec:authorize="hasRole('ADMIN')">
-            <br>
-            <a href="/students/add">Add new student</a>
-        </div>
+        <!--<div sec:authorize="hasRole('ADMIN')">-->
+            <!--<br>-->
+            <!--<a href="/students/add">Add new student</a>-->
+        <!--</div>-->
     </div>
 </body>
 </html>
