@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
 
 import javax.sql.DataSource;
 
@@ -22,16 +23,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         this.myDataSource = myDataSource;
     }
 
-    @Override
+
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(myDataSource);
+        //auth.jdbcAuthentication().dataSource(myDataSource);
+
+        User.UserBuilder users = User.withDefaultPasswordEncoder();
+
+        auth.inMemoryAuthentication()
+                .withUser(users.username("admin").password("admin").roles("ADMIN"))
+                .withUser(users.username("user").password("user").roles("USER"));
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/").hasAnyRole("ADMIN","USER", "MANAGER")
+                //.anyRequest().authenticated()
+                .antMatchers("/**").permitAll()
+                //.antMatchers("/*").hasAnyRole("ADMIN","USER", "MANAGER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("manager/**").hasRole("MANAGER")
                 .and()
