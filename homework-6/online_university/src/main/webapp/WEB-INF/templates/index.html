@@ -20,11 +20,10 @@
 
         <div sec:authorize="isAuthenticated()">
             Authenticated username:
-            <div sec:authentication "principal.username"></div>
+            <div sec:authentication="principal.username"></div>
             Authenticated user roles:
-            <div sec:authentication "principal.authorities"></div>
+            <div sec:authentication="principal.authorities"></div>
         </div>
-
 
         <h2>Index:</h2>
         <br>
@@ -33,7 +32,7 @@
             <br>
             <a href="/students/add">Add new student</a>
         </div>
-
     </div>
+
 </body>
 </html>
