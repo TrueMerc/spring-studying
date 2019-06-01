@@ -18,6 +18,9 @@ public class MainController {
     @RequestMapping("/login")
     public String showLoginPage() { return "modern-login"; }
 
+    @RequestMapping("/profile")
+    public String showProfilePage() { return "profile-page"; }
+
     @Secured({"ROLE_ADMIN"})
     @RequestMapping("/administratorOnly")
     public String administratorOnly() {
