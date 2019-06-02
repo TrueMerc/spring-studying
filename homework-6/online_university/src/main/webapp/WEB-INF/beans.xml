@@ -28,7 +28,7 @@
     <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/"/>
         <property name="suffix" value=".html"/>
-        <property name="templateMode" value="HTML5"/>
+        <property name="templateMode" value="HTML"/>
     </bean>
     <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver" />

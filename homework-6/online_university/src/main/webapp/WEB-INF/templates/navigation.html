@@ -38,7 +38,7 @@
                     <a class="nav-link" th:href="@{/students/list}">Students List</a>
                 </li>
                 <li sec:authorize="hasAnyRole('ADMIN','MANAGER')" class="nav-item">
-                    <a class="nav-link" th:href="@{/students/courses/14}">Courses Info</a>
+                    <a class="nav-link" th:href="@{/courses/list}">Courses Info</a>
                 </li>
                 <li sec:authorize="hasRole('ADMIN')" class="nav-item">
                     <a class="nav-link" href="/admin">Admin Dashboard</a>

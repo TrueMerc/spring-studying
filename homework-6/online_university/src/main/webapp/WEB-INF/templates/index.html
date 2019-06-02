@@ -35,7 +35,7 @@
         <a href="/students/list">Watch students list</a>
         <br>
         <div sec:authorize="hasAnyRole('ADMIN','MANAGER')">
-            <a href="/students/add">Watch courses info</a>
+            <a href="/courses/list">Watch courses info</a>
             <br>
         </div>
         <div sec:authorize="hasRole('ADMIN')">
