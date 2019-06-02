@@ -25,14 +25,8 @@
                 <td>Id</td>
                 <td>First Name</td>
                 <td>Last Name</td>
-                <div sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
-                    <td>Courses</td>
-                </div>
-                <td>Courses</td>
-                <div sec:authorize="hasRole('ADMIN')">
-                    <td>Actions</td>
-                </div>
-
+                <td sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">Courses</td>
+                <td sec:authorize="hasRole('ADMIN')">Actions</td>
             </tr>
             </thead>
 
@@ -40,15 +34,11 @@
                 <td th:text="${student.id}"/>
                 <td th:text="${student.firstName}"/>
                 <td th:text="${student.lastName}"/>
-                <div sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
-                    <td th:text="${student.courses}"/>
-                </div>
-                <div sec:authorize="hasRole('ADMIN')">
-                    <td>
-                        <button class="btn btn-primary removeBtn" th:attr="entryIndex=${student.id}">Remove</button>
-                        <a class="btn btn-danger" th:href="'/students/remove/' + ${student.id}" role="button">Remove</a>
-                    </td>
-                </div>
+                <td sec:authorize="hasAnyRole('ADMIN', 'MANAGER')" th:text="${student.courses}"/>
+                <td sec:authorize="hasRole('ADMIN')">
+                    <button class="btn btn-primary removeBtn" th:attr="entryIndex=${student.id}">Remove</button>
+                    <a class="btn btn-danger" th:href="'/students/remove/' + ${student.id}" role="button">Remove</a>
+                </td>
             </tr>
         </table>
         <br>
