@@ -4,9 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "_users")
 @Data
 public class User {
 
@@ -15,8 +16,8 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "username")
-    private String login;
+    @Column(name = "name")
+    private String userName;
 
     @Column(name = "password")
     private String password;
@@ -34,7 +35,7 @@ public class User {
     private String phone;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_roles",
+    @JoinTable(name = "_users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
 
@@ -43,7 +44,7 @@ public class User {
     public User() {}
 
     public User(String userName, String password, String firstName, String lastName, String email, String phone) {
-        this.login = userName;
+        this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,15 +52,15 @@ public class User {
         this.phone = phone;
     }
 
-//    public User(String userName, String password, String firstName, String lastName, String email, String phone, Role roles) {
-//        this.login = userName;
-//        this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.role = roles;
-//        this.phone = phone;
-//    }
+    public User(String userName, String password, String firstName, String lastName, String email, String phone, Collection<Role> roles) {
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.roles = roles;
+        this.phone = phone;
+    }
 
 //    @Override
 //    public String toString() {
@@ -70,7 +71,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", login='" + login + '\'' + ", password='" + "*********" + '\''
+        return "User{" + "id=" + id + ", login='" + userName + '\'' + ", password='" + "*********" + '\''
                 + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\'';
 
     }

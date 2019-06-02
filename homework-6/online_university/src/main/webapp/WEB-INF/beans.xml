@@ -57,7 +57,7 @@
 
 
     <!--<bean id="authenticationProvider" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">-->
-        <!--<constructor-arg name="strength" value="4" />-->
+        <!--<constructor-arg name="strength" value="10" />-->
     <!--</bean>-->
 
     <bean id="entityManagerFactory"
