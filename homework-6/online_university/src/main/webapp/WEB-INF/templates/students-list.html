@@ -36,7 +36,7 @@
                 <td th:text="${student.lastName}"/>
                 <td sec:authorize="hasAnyRole('ADMIN', 'MANAGER')" th:text="${student.courses}"/>
                 <td sec:authorize="hasRole('ADMIN')">
-                    <button class="btn btn-primary removeBtn" th:attr="entryIndex=${student.id}">Remove</button>
+                    <!--<button class="btn btn-primary removeBtn" th:attr="entryIndex=${student.id}">Remove</button>-->
                     <a class="btn btn-danger" th:href="'/students/remove/' + ${student.id}" role="button">Remove</a>
                 </td>
             </tr>
