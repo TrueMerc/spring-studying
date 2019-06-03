@@ -1,6 +1,7 @@
 package ru.ryabtsev.spring.registration;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import ru.ryabtsev.spring.validation.ValidEmail;
 
@@ -12,9 +13,8 @@ import javax.validation.constraints.Size;
  */
 @Data
 @NoArgsConstructor
-public class StudentRegistrationForm {
-
-    private static final String REQUIRED_FIELD_MESSAGE = "This field is required.";
+@EqualsAndHashCode(callSuper = true)
+public class StudentRegistrationForm extends RegistrationForm {
 
     @NotNull(message=REQUIRED_FIELD_MESSAGE)
     @Size(min=2, message="First name should contains at least two symbols.")

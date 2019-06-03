@@ -47,15 +47,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void save(UserRegistrationForm userRegistrationForm) {
+    public void save(UserRegistrationForm form) {
         User user = new User();
-        user.setUserName(userRegistrationForm.getUserName());
-        user.setPassword(passwordEncoder.encode(userRegistrationForm.getPassword()));
-        user.setFirstName(userRegistrationForm.getFirstName());
-        user.setLastName(userRegistrationForm.getLastName());
-        user.setEmail(userRegistrationForm.getEmail());
-
-        user.setRoles(Arrays.asList(roleRepository.findOneByName("ROLE_USER")));
+        user.setUserName(form.getUserName());
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
+        user.setPhone(form.getPhone());
+        user.setEmail(form.getEmail());
+        user.setRoles(Arrays.asList(roleRepository.findById(form.getRoleId()).get()));
 
         userRepository.save(user);
     }

@@ -23,7 +23,8 @@
             </div>
             <div class="panel-body">
 
-                <form th:action="@{/students/add}" th:object="${studentRegistrationForm}" method="POST" class="form-horizontal">
+                <form th:action="@{/students/processStudentForm}" th:object="${studentRegistrationForm}"
+                      method="POST" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-xs-15">
                             <div th:if="${registrationError != null}">

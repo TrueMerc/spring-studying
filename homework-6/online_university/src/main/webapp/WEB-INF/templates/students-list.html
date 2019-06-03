@@ -43,7 +43,7 @@
         </table>
         <br>
         <div sec:authorize ="hasAnyRole('ADMIN', 'MANAGER')">
-            <form th:action="@{/students/add}" method="GET" class="form-horizontal">
+            <form th:action="@{/students/addStudent}" method="GET" class="form-horizontal">
                 <button type="submit" class="btn btn-primary">Add new student</button>
             </form>
             <br>
