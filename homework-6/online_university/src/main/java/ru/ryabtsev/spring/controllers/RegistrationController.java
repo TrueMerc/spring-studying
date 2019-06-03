@@ -37,7 +37,7 @@ public class RegistrationController {
     @GetMapping("/showRegistrationForm")
     public String showRegistrationForm(Model model) {
         model.addAttribute("userRegistrationForm", new UserRegistrationForm());
-        return "registration-form";
+        return "user-registration-form";
     }
 
     // Binding Result после @ValidModel !!!
@@ -49,18 +49,20 @@ public class RegistrationController {
         String userName = userRegistrationForm.getUserName();
         logger.debug("Processing registration form for: " + userName);
         if (theBindingResult.hasErrors()) {
-            return "registration-form";
+            return "user-registration-form";
         }
+
         User existing = userService.findByUserName(userName);
         if (existing != null) {
             // theSystemUser.setUserName(null);
             theModel.addAttribute("userRegistrationForm", userRegistrationForm);
             theModel.addAttribute("registrationError", "User name already exists");
             logger.debug("User name already exists.");
-            return "registration-form";
+            return "user-registration-form";
         }
+
         userService.save(userRegistrationForm);
         logger.debug("Successfully created user: " + userName);
-        return "registration-confirmation";
+        return "user-registration-confirmation";
     }
 }

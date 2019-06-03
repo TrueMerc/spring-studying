@@ -7,6 +7,9 @@ import ru.ryabtsev.spring.validation.ValidEmail;
 
 import javax.validation.constraints.*;
 
+/**
+ * Implements user registration form.
+ */
 @Data
 @NoArgsConstructor
 @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")

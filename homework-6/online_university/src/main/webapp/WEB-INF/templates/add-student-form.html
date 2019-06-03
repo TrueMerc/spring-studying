@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Add New Student</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -12,14 +13,61 @@
     <link type="text/css" rel="stylesheet" th:href="@{/resources/css/main.css}"/>
 </head>
 <html>
-    <body>
-        <form th:action="@{/students/add}" th:object="${student}" method="post">
-            First Name: <input type="text" th:field="*{firstName}"/>
-            Last Name: <input type="text" th:field="*{lastName}"/>
-            <br>
-            <div class="submit">
-                <button name="addStudent" type="submit">Add student</button>
+<body>
+    <div th:replace="~{navigation :: navi(Home)}" />
+
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">Add New Student</div>
             </div>
-        </form>
-    </body>
+            <div class="panel-body">
+
+                <form th:action="@{/students/add}" th:object="${studentRegistrationForm}" method="POST" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-xs-15">
+                            <div th:if="${registrationError != null}">
+                                <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                    ${registrationError}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- First name -->
+                    <div class="input-group">
+                        <span class="input-group-text">First Name:</span>
+                        <input type="text" class="form-control" th:field="*{firstName}"/>
+                    </div>
+
+                    <!-- Last name -->
+                    <div class="input-group">
+                        <span class="input-group-text">Last Name:</span>
+                        <input type="text" class="form-control" th:field="*{lastName}"/>
+                    </div>
+
+                    <!-- Phone number -->
+                    <div class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"/>
+                    <div class="input-group">
+                        <span class="input-group-text">Phone #:</span>
+                        <input type="text" class="form-control" th:field="*{phoneNumber}"/>
+                    </div>
+
+                    <!-- Email address -->
+                    <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
+                    <div class="input-group">
+                        <span class="input-group-text">E-mail:</span>
+                        <input type="text" class="form-control" th:field="*{email}"/>
+                    </div>
+                    <br>
+                    <div class="submit">
+                        <button name="addStudent" class="btn btn-primary" type="submit">Add</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
 </html>

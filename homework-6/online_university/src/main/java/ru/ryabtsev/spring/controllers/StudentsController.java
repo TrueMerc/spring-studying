@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.ryabtsev.spring.entities.Student;
+import ru.ryabtsev.spring.registration.StudentRegistrationForm;
 import ru.ryabtsev.spring.services.StudentsService;
+import ru.ryabtsev.spring.services.UserService;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -18,14 +22,18 @@ import java.util.List;
 @Transactional
 public class StudentsController {
     private StudentsService studentsService;
+    private UserService userService;
+
 
     @Autowired
-    public void setStudentsService(StudentsService studentsService) {
+    public void setStudentsService(final StudentsService studentsService) {
         this.studentsService = studentsService;
     }
 
+    @Autowired
+    public void setUserService(final UserService userService) { this.userService = userService; }
+
     @RequestMapping("/list")
-    @Transactional
     public String showStudentsList(Model model) {
         List<Student> allStudents = studentsService.getAllStudentsList();
         model.addAttribute("studentsList", allStudents);
@@ -34,15 +42,14 @@ public class StudentsController {
 
     @RequestMapping(path="/add", method= RequestMethod.GET)
     public String showAddForm(Model model) {
-        Student student = new Student();
-        student.setFirstName("Unknown");
-        student.setLastName("Unknown");
-        model.addAttribute("student", student);
+        StudentRegistrationForm registrationForm = new StudentRegistrationForm();
+        model.addAttribute("studentRegistrationForm", registrationForm);
         return "add-student-form";
     }
 
     @RequestMapping(path="/add", method=RequestMethod.POST)
-    public String showAddForm(Student student) {
+    public String showAddForm(StudentRegistrationForm form, Principal principal) {
+        Student student = new Student(form, userService.findByUserName(principal.getName()), new Date());
         studentsService.addStudent(student);
         return "redirect:/students/list";
     }

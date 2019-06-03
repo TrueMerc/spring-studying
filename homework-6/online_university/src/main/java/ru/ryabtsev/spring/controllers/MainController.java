@@ -16,10 +16,10 @@ public class MainController {
     }
 
     @RequestMapping("/login")
-    public String showLoginPage() { return "modern-login"; }
+    public String showLoginPage() { return "login"; }
 
     @RequestMapping("/profile")
-    public String showProfilePage() { return "profile-page"; }
+    public String showProfilePage() { return "profile"; }
 
     @Secured({"ROLE_ADMIN"})
     @RequestMapping("/administratorOnly")

@@ -20,25 +20,6 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-//    private DataSource myDataSource;
-//
-//    @Autowired
-//    public void setMyDataSource(DataSource myDataSource) {
-//        this.myDataSource = myDataSource;
-//    }
-//
-//
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.jdbcAuthentication().dataSource(myDataSource);
-
-//        User.UserBuilder users = User.withDefaultPasswordEncoder();
-//
-//        auth.inMemoryAuthentication()
-//                .withUser(users.username("admin").password("admin").roles("ADMIN"))
-//                .withUser(users.username("user").password("user").roles("USER"))
-//                .withUser(users.username("manager").password("manager").roles("MANAGER"));
-//
-
     private DataSource dataSource;
     private UserService userService;
     private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;

@@ -34,6 +34,9 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
+    @OneToMany(mappedBy="user")
+    private List<Student> students;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "_users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
