@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ * Implements site user role entity.
+ */
 @Entity
 @Table(name = "_roles")
 @Data
