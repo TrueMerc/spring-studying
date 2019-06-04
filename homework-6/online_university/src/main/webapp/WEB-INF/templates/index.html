@@ -16,22 +16,32 @@
     <div th:replace="~{navigation :: navi(Home)}" />
 
     <div class="container">
-        <h1>Welcome page</h1>
+        <h1>Welcome!</h1>
 
-        <!--<div sec:authorize="isAuthenticated()">-->
-            <!--Authenticated username:-->
-            <!--<div sec:authentication="principal.username"></div>-->
-            <!--Authenticated user roles:-->
-            <!--<div sec:authentication="principal.authorities"></div>-->
-        <!--</div>-->
+        <div sec:authorize="isAuthenticated()">
+            <div>
+                Authenticated username:
+                <span sec:authentication="principal.username"></span>
+            </div>
+            <div>
+                Authenticated user roles:
+                <span sec:authentication="principal.authorities"></span>
+            </div>
+            <br>
+        </div>
 
-        <h2>Index:</h2>
+        <h2>Accepted actions:</h2>
         <br>
-        <a href="/students/list">Show students list</a>
-        <!--<div sec:authorize="hasRole('ADMIN')">-->
-            <!--<br>-->
-            <!--<a href="/students/add">Add new student</a>-->
-        <!--</div>-->
+        <a href="/students/list">Watch students list</a>
+        <br>
+        <div sec:authorize="hasAnyRole('ADMIN','MANAGER')">
+            <a href="/courses/list">Watch courses info</a>
+            <br>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <a href="/students/list">Manage courses and students</a>
+        </div>
     </div>
+
 </body>
 </html>

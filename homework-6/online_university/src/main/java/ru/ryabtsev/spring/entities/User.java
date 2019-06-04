@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "_users")
@@ -15,8 +16,8 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "username")
-    private String login;
+    @Column(name = "name")
+    private String userName;
 
     @Column(name = "password")
     private String password;
@@ -33,14 +34,20 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "role_id", nullable = false)
-//    private Role role;
+    @OneToMany(mappedBy="user")
+    private List<Student> students;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "_users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+
+    private Collection<Role> roles;
 
     public User() {}
 
     public User(String userName, String password, String firstName, String lastName, String email, String phone) {
-        this.login = userName;
+        this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,15 +55,15 @@ public class User {
         this.phone = phone;
     }
 
-//    public User(String userName, String password, String firstName, String lastName, String email, String phone, Role roles) {
-//        this.login = userName;
-//        this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.role = roles;
-//        this.phone = phone;
-//    }
+    public User(String userName, String password, String firstName, String lastName, String email, String phone, Collection<Role> roles) {
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.roles = roles;
+        this.phone = phone;
+    }
 
 //    @Override
 //    public String toString() {
@@ -67,7 +74,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", login='" + login + '\'' + ", password='" + "*********" + '\''
+        return "User{" + "id=" + id + ", login='" + userName + '\'' + ", password='" + "*********" + '\''
                 + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\'';
 
     }

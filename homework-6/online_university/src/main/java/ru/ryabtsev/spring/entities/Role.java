@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ * Implements site user role entity.
+ */
 @Entity
 @Table(name = "_roles")
 @Data
@@ -19,6 +22,11 @@ public class Role {
     public Role() {}
 
     public Role(String name) {
+        this.name = name;
+    }
+
+    public Role(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 

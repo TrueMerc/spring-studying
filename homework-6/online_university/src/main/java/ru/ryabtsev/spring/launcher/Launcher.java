@@ -21,7 +21,7 @@ public class Launcher {
         URL location = domain.getCodeSource().getLocation();
 
         WebAppContext webapp = new WebAppContext();
-        webapp.setContextPath("/");
+        webapp.setContextPath("/*");
         webapp.setWar(location.toExternalForm());
         webapp.addFilter(new FilterHolder(new DelegatingFilterProxy("springSecurityFilterChain")), "/*", EnumSet.allOf(DispatcherType.class));
 

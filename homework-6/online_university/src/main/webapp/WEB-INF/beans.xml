@@ -32,13 +32,18 @@
     </bean>
     <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver" />
+        <property name="additionalDialects">
+            <set>
+                <bean class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect"/>
+            </set>
+        </property>
     </bean>
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine" />
+        <property name="characterEncoding" value="UTF-8" />
     </bean>
 
-    <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close">
+    <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/online_university?useSSL=false"/>
         <property name="user" value="test_user"/>
@@ -49,15 +54,6 @@
     </bean>
 
     <jpa:repositories base-package="ru.ryabtsev.spring"/>
-
-
-    <bean id="authenticationProvider" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-        <constructor-arg name="strength" value="10" />
-        <!--<security:jdbc-user-service data-source-ref="myDataSource"-->
-                                    <!--users-by-username-query="SELECT login, password FROM `_users` WHERE login = ?"-->
-                                    <!--authorities-by-username-query="SELECT u.login, au.authority FROM `_authorities`-->
-                                    <!--WHERE u.login = au.login AND u.login = ?"/>-->
-    </bean>
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

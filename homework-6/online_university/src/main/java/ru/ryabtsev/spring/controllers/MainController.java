@@ -4,22 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Implements main page controller.
+ * Implements main pages controller.
  */
 @Controller
 public class MainController {
-
     @RequestMapping("/")
     public String showHomePage() {
         return "index";
     }
 
     @RequestMapping("/login")
-    public String showLoginPage() { return "modern-login"; }
+    public String showLoginPage() { return "login"; }
 
-//    @Secured({"ROLE_ADMIN"})
-//    @RequestMapping("/administratorOnly")
-//    public String administratorOnly() {
-//        return "index";
-//    }
+    @RequestMapping("/profile")
+    public String showProfilePage() { return "profile"; }
 }
