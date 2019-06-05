@@ -68,13 +68,6 @@ public class User {
         this.phone = phone;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User{" + "id=" + id + ", login='" + login + '\'' + ", password='" + "*********" + '\''
-//                + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\''
-//                + ", role=" + role + '}';
-//    }
-
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", login='" + userName + '\'' + ", password='" + "*********" + '\''
