@@ -1,5 +1,6 @@
 package ru.ryabtsev.spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 
@@ -29,6 +30,7 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     @Cascade({org.hibernate.annotations.CascadeType.DELETE, org.hibernate.annotations.CascadeType.DETACH})
+    @JsonBackReference
     private List<Student> students;
 
     public Course() {}

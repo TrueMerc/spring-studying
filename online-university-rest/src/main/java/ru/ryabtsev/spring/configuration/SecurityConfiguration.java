@@ -1,4 +1,4 @@
-package ru.ryabtsev.spring.launcher;
+package ru.ryabtsev.spring.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -47,18 +47,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                //  .antMatchers("/register/**").permitAll()
-                .antMatchers("/").hasAnyRole("USER", "MANAGER", "ADMIN")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+//                  .antMatchers("/**").permitAll()
+                .antMatchers("/api/**").hasAnyRole("USER", "MANAGER", "ADMIN")
+//                .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/authenticateTheUser")
-                .successHandler(customAuthenticationSuccessHandler)
-                .permitAll()
+                .httpBasic()
+//
+//                .successHandler(customAuthenticationSuccessHandler)
+//                .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+//                .logout()
+                .csrf().
+                ignoringAntMatchers("/api/**");
+
     }
 
     @Bean

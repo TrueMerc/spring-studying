@@ -1,17 +1,14 @@
 package ru.ryabtsev.spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
-import org.springframework.lang.Nullable;
-import ru.ryabtsev.spring.registration.StudentRegistrationForm;
-import ru.ryabtsev.spring.validation.ValidEmail;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -39,7 +36,6 @@ public class Student {
     @Getter(value = AccessLevel.NONE)
     @Setter(value = AccessLevel.NONE)
     @Column(name = "registration_date_time")
-    @Nullable
     private Timestamp timestamp;
 
     @ManyToOne(fetch=FetchType.EAGER)
@@ -57,15 +53,6 @@ public class Student {
 
     public Student() {}
 
-    public Student(final StudentRegistrationForm form, final User employee, final Date registrationDate) {
-        this.firstName = form.getFirstName();
-        this.lastName = form.getLastName();
-        this.phoneNumber = form.getPhoneNumber();
-        this.email = form.getEmail();
-        this.user = employee;
-        this.timestamp = new Timestamp(registrationDate.getTime());
-    }
-
     @Override
     public String toString() {
         String result = "Student [id = " + id + "] " + lastName + " " + firstName + "\nCourses list:\n";
@@ -74,5 +61,4 @@ public class Student {
         }
         return result;
     }
-
 }

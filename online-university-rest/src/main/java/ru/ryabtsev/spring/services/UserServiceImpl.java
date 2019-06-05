@@ -9,12 +9,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.ryabtsev.spring.entities.Role;
 import ru.ryabtsev.spring.entities.User;
-import ru.ryabtsev.spring.registration.UserRegistrationForm;
+
 import ru.ryabtsev.spring.repositories.RoleRepository;
 import ru.ryabtsev.spring.repositories.UserRepository;
 
 import javax.transaction.Transactional;
-import java.util.Arrays;
+
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -43,21 +43,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User findByUserName(String userName) {
         return userRepository.findOneByUserName(userName);
-    }
-
-    @Override
-    @Transactional
-    public void save(UserRegistrationForm form) {
-        User user = new User();
-        user.setUserName(form.getUserName());
-        user.setPassword(passwordEncoder.encode(form.getPassword()));
-        user.setFirstName(form.getFirstName());
-        user.setLastName(form.getLastName());
-        user.setPhone(form.getPhone());
-        user.setEmail(form.getEmail());
-        user.setRoles(Arrays.asList(roleRepository.findById(form.getRoleId()).get()));
-
-        userRepository.save(user);
     }
 
     @Override

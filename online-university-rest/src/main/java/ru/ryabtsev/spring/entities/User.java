@@ -1,5 +1,6 @@
 package ru.ryabtsev.spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -35,13 +36,13 @@ public class User {
     private String phone;
 
     @OneToMany(mappedBy="user")
+    @JsonBackReference
     private List<Student> students;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "_users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-
     private Collection<Role> roles;
 
     public User() {}

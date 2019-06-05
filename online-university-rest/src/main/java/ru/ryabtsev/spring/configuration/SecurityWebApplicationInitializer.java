@@ -1,4 +1,4 @@
-package ru.ryabtsev.spring.launcher;
+package ru.ryabtsev.spring.configuration;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.stereotype.Component;

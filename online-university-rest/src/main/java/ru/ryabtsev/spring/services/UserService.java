@@ -1,7 +1,6 @@
 package ru.ryabtsev.spring.services;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import ru.ryabtsev.spring.registration.UserRegistrationForm;
 import ru.ryabtsev.spring.entities.User;
 
 /**
@@ -16,8 +15,4 @@ public interface UserService extends UserDetailsService {
      */
     User findByUserName(final String userName);
 
-    /**
-     * Saves user data given from user registration form into repository.
-     */
-    void save(final UserRegistrationForm userRegistrationForm);
 }
