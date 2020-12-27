@@ -18,7 +18,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <spring.version>5.2.3.RELEASE</spring.version>
     <spring.data.version>2.1.8.RELEASE</spring.data.version>
-    <jetty.version>9.4.34.v20201102</jetty.version>
+    <jetty.version>9.4.35.v20201120</jetty.version>
     <jetty.jsp.version>9.3.0.M1</jetty.jsp.version>
   </properties>
 
