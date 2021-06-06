@@ -19,7 +19,7 @@
     <spring.version>5.2.3.RELEASE</spring.version>
     <spring.data.version>2.1.8.RELEASE</spring.data.version>
     <spring.security.version>5.1.5.RELEASE</spring.security.version>
-    <jetty.version>9.4.38.v20210224</jetty.version>
+    <jetty.version>9.4.40.v20210413</jetty.version>
     <jetty.jsp.version>9.3.0.M1</jetty.jsp.version>
   </properties>
   
